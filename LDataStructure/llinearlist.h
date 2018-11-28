@@ -1,24 +1,28 @@
 #ifndef LLINEARLIST_H
 #define LLINEARLIST_H
 #include "llist.h"
-#include "lobject.h"
 
 struct LLinearListItemData
 {
     LLinearListItemData():
         pData(nullptr),
-        pFirst(nullptr)
+        lCapacity(0),
+        lUsedNum(0)
     {}
-    LObject** pData;
-    LLinearListItemData* pFirst;
-
+    LObject* pData;
+    long lCapacity;
+    long lUsedNum;
 };
 
-class LLinearList :public LList
+class LStaticLinearList :public LList
 {
 public:
-    LLinearList();
-    virtual ~LLinearList();
+    LStaticLinearList();
+    virtual ~LStaticLinearList();
+    virtual int InitList();
+    virtual int DestoryList();
+    virtual int InsertData(const LObject* data,const bool bToEnd = true);
+    virtual int DeleteData(const int position);
 private:
     LLinearListItemData m_data;
 };
