@@ -1,50 +1,67 @@
 #include "llinearlist.h"
 
-
-LStaticLinearList::LStaticLinearList()
-{
-    m_data.lCapacity = L_DLINERLIST_DEFAULT_SIZE;
-    m_data.lUsedNum = 0;
+LDynamicLinearList::LDynamicLinearList() {
+  m_data.lCapacity = L_DLINERLIST_DEFAULT_SIZE;
+  m_data.lUsedNum = 0;
 }
 
-LStaticLinearList::~LStaticLinearList()
-{
-    DestoryList();
+LDynamicLinearList::~LDynamicLinearList() { DestoryList(); }
+
+int LDynamicLinearList::InitList() {
+  if (m_data.pData) {
+    delete[] m_data.pData;
+  }
+  m_data.pData = new LObject[m_data.lCapacity];
+  m_data.lUsedNum = 0;
+  return L_OK;
 }
 
-int LStaticLinearList::InitList()
+int LDynamicLinearList::DestoryList() {
+  for (int i = 0; i < m_data.lUsedNum; ++i) {
+    L_Del(m_data.pData[i]);
+  }
+  return L_OK;
+}
+
+int LDynamicLinearList::InsertData(const LObject* data,
+                                   const bool bToEnd /*= true*/) {
+  if (!bToEnd)
+  {
+      return L_ERR_PARAM;
+  }
+  AdjustListSize();
+  m_data.pData[m_data.lUsedNum] = data;
+  ++m_data.lUsedNum;
+
+  return L_OK;
+}
+
+int LDynamicLinearList::InsertData(const LList::LObject *datda, const int position)
 {
-    if(m_data.pData)
+    if(position<0 || position>m_data.lUsedNum)
     {
-        delete [] m_data.pData;
+        return L_ERR_PARAM;
     }
-    m_data.pData = new LObject[m_data.lCapacity];
-    m_data.lUsedNum = 0;
+    AdjustListSize();
+    for(int i = m_data.lUsedNum; i > position ; --io)
+
+}
+
+int LDynamicLinearList::DeleteData(const int position) {
+
     return L_OK;
 }
 
-int LStaticLinearList::DestoryList()
+int LDynamicLinearList::AdjustListSize()
 {
-    for(int i=0;i<m_data.lUsedNum;++i)
+    while (m_data.lUsedNum >= m_data.lCapacity)
     {
-        L_Del(m_data.pData[i]);
+      int iNewCap = m_data.lCapacity + (m_data.lCapacity >> 1);
+      m_data.lCapacity = iNewCap;
     }
+    LObject* pNew = new LObject[m_data.lCapacity];
+    memcpy(pNew, m_data.pData, m_data.lUsedNum * sizeof(LObject*));
+    delete[] m_data.pData;
+    m_data.pData = pNew;
     return L_OK;
 }
-
-int LStaticLinearList::InsertData(const LObject *data, const bool bToEnd)
-{
-    if(m_data.lCapacity == m_data.lUsedNum)
-    {
-        int iOldCap = m_data.lCapacity;
-        int iNewCap = iOldCap + (iOldCap >> 1);
-        if()
-    }
-}
-
-int LStaticLinearList::DeleteData(const int position)
-{
-
-}
-
-

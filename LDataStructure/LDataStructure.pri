@@ -4,7 +4,8 @@ HEADERS += \
     $$PWD/lsinglelist.h \
     $$PWD/llinearlist.h \
     $$PWD/datadef.h \
-    $$PWD/macrodef.h
+    $$PWD/macrodef.h \
+    $$PWD/includedef.h
 
 SOURCES += \
     $$PWD/ldatastructure.cpp \

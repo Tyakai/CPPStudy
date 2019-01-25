@@ -4,27 +4,31 @@
 
 struct LLinearListItemData
 {
-    LLinearListItemData():
-        pData(nullptr),
-        lCapacity(0),
-        lUsedNum(0)
-    {}
-    LObject* pData;
-    long lCapacity;
-    long lUsedNum;
+  LLinearListItemData()
+    : pData(nullptr)
+    , lCapacity(0)
+    , lUsedNum(0)
+  {}
+  LObject* pData;
+  long lCapacity;
+  long lUsedNum;
 };
 
-class LStaticLinearList :public LList
+class LDynamicLinearList : public LList
 {
 public:
-    LStaticLinearList();
-    virtual ~LStaticLinearList();
-    virtual int InitList();
-    virtual int DestoryList();
-    virtual int InsertData(const LObject* data,const bool bToEnd = true);
-    virtual int DeleteData(const int position);
+  LDynamicLinearList();
+  virtual ~LDynamicLinearList();
+  virtual int InitList();
+  virtual int DestoryList();
+  virtual int InsertData(const LObject* data, const bool bToEnd = true);
+  virtual int InsertData(const LObject* datda,const int position);
+  virtual int DeleteData(const int position);
+
 private:
-    LLinearListItemData m_data;
+  int    AdjustListSize();
+private:
+  LLinearListItemData m_data;
 };
 
 #endif // LLINEARLIST_H
