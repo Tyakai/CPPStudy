@@ -4,3 +4,8 @@ LDataStructure::LDataStructure()
 {
 
 }
+
+LDataStructure::~LDataStructure()
+{
+
+}

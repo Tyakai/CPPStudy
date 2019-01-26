@@ -9,7 +9,7 @@ struct LLinearListItemData
     , lCapacity(0)
     , lUsedNum(0)
   {}
-  LObject* pData;
+  LObject** pData;
   long lCapacity;
   long lUsedNum;
 };
@@ -19,11 +19,19 @@ class LDynamicLinearList : public LList
 public:
   LDynamicLinearList();
   virtual ~LDynamicLinearList();
-  virtual int InitList();
+  virtual int InitList() ;
   virtual int DestoryList();
-  virtual int InsertData(const LObject* data, const bool bToEnd = true);
-  virtual int InsertData(const LObject* datda,const int position);
+  virtual int InsertData(LObject* const data, const bool bToEnd = true);
+  virtual int InsertData(LObject* const data,const int position);
   virtual int DeleteData(const int position);
+  virtual int ClearList();
+  virtual int ListIsEmpty();
+  virtual int ListLength();
+  virtual int GetElem(const int position, LObject* obj);
+  virtual int LocateElem(int& position, LObject* obj, CompareApi compareApi);
+  virtual int PriorElem(LObject* curObj, LObject* preObj);
+  virtual int NextElem(LObject* curObj, LObject* nextObj);
+
 
 private:
   int    AdjustListSize();

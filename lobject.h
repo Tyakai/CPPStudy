@@ -1,7 +1,6 @@
 #ifndef LOBJECT_H
 #define LOBJECT_H
 
-
 class LObject
 {
 public:
@@ -9,4 +8,5 @@ public:
     virtual ~LObject();
 };
 
+typedef LObject* PLObject;
 #endif // LOBJECT_H

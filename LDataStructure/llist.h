@@ -6,6 +6,8 @@
 #include "lobject.h"
 #include "macrodef.h"
 
+typedef int (*CompareApi)(LObject* objA,LObject* objB);
+
 class LList : public LDataStructure
 {
 public:
@@ -13,11 +15,11 @@ public:
   virtual ~LList();
   virtual int InitList() = 0;
   virtual int DestoryList() { return L_ERR_SUPPORT; }
-  virtual int InsertData(const LObject* data, const bool bToEnd = true)
+  virtual int InsertData( LObject* const data, const bool bToEnd = true)
   {
     return L_ERR_SUPPORT;
   }
-  virtual int InsertData(const LObject* data,const int position){return  L_ERR_SUPPORT;}
+  virtual int InsertData( LObject* const data,const int position){return  L_ERR_SUPPORT;}
   virtual int DeleteData(const int position) { return L_ERR_SUPPORT; }
   virtual int ClearList() { return L_ERR_SUPPORT; }
   virtual int ListIsEmpty() { return L_ERR_SUPPORT; }
@@ -26,7 +28,10 @@ public:
   {
     return L_ERR_SUPPORT;
   }
-  virtual int LocateElem(int& position, LObject* obj, )
+  virtual int LocateElem(int& position, LObject* obj, CompareApi compareApi) {return L_ERR_SUPPORT;}
+  virtual int PriorElem(LObject* curObj, LObject* preObj){return L_ERR_SUPPORT;}
+  virtual int NextElem(LObject* curObj, LObject* nextObj){return L_ERR_SUPPORT;}
+
 };
 
 #endif // LLIST_H

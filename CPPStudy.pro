@@ -3,6 +3,7 @@
 
 TARGET = CPPStudy
 TEMPLATE = lib
+CONFIG += C++11
 
 include($$PWD/LDataStructure/LDataStructure.pri)
 
