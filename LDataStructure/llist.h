@@ -5,8 +5,9 @@
 #include "ldatastructure.h"
 #include "lobject.h"
 #include "macrodef.h"
-
-typedef int (*CompareApi)(LObject* objA,LObject* objB);
+//objTar:传入参数
+//objCon:符合的参数
+typedef bool (*CompareApi)(LObject* objTar,LObject* objCon);
 
 class LList : public LDataStructure
 {
@@ -15,13 +16,13 @@ public:
   virtual ~LList();
   virtual int InitList() = 0;
   virtual int DestoryList() { return L_ERR_SUPPORT; }
-  virtual int InsertData( LObject* const data, const bool bToEnd = true)
+  virtual int ClearList(){return L_ERR_SUPPORT;}
+  virtual int ListInsert( LObject* const data, const bool bToEnd = true)
   {
     return L_ERR_SUPPORT;
   }
-  virtual int InsertData( LObject* const data,const int position){return  L_ERR_SUPPORT;}
-  virtual int DeleteData(const int position) { return L_ERR_SUPPORT; }
-  virtual int ClearList() { return L_ERR_SUPPORT; }
+  virtual int ListInsert( LObject* const data,const int position){return  L_ERR_SUPPORT;}
+  virtual int ListDelete(const int position) { return L_ERR_SUPPORT; }
   virtual int ListIsEmpty() { return L_ERR_SUPPORT; }
   virtual int ListLength() { return L_ERR_SUPPORT; }
   virtual int GetElem(const int position, LObject* obj)

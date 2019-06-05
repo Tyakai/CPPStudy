@@ -6,6 +6,10 @@
 #define L_FAIL         -1
 #define L_ERR_SUPPORT  -2
 #define L_ERR_PARAM    -3
+#define L_ERR_FOUND    -4
+#define L_ERR_POSITION -5
+#define L_ERR_INIT     -6
+#define L_ERR_EMPTY    -7
 
 
 #define L_TRUE         1

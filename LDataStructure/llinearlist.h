@@ -21,14 +21,14 @@ public:
   virtual ~LDynamicLinearList();
   virtual int InitList() ;
   virtual int DestoryList();
-  virtual int InsertData(LObject* const data, const bool bToEnd = true);
-  virtual int InsertData(LObject* const data,const int position);
-  virtual int DeleteData(const int position);
   virtual int ClearList();
   virtual int ListIsEmpty();
   virtual int ListLength();
+  virtual int ListInsert(LObject* const data, const bool bToEnd = true);
+  virtual int ListInsert(LObject* const data,const int position);
+  virtual int ListDelete(const int position);
   virtual int GetElem(const int position, LObject* obj);
-  virtual int LocateElem(int& position, LObject* obj, CompareApi compareApi);
+  virtual int LocateElem(int& position, LObject* obj, CompareApi compareApi);//返回线性表中第一个与e满足compare()关系的元素的位序
   virtual int PriorElem(LObject* curObj, LObject* preObj);
   virtual int NextElem(LObject* curObj, LObject* nextObj);
 

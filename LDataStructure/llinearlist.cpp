@@ -11,19 +11,27 @@ int LDynamicLinearList::InitList() {
   if (m_data.pData) {
     delete[] m_data.pData;
   }
+  if(m_data.lCapacity <= 0)
+  {
+      m_data.lCapacity = L_DLINERLIST_DEFAULT_SIZE;
+  }
   m_data.pData = new PLObject[m_data.lCapacity];
   m_data.lUsedNum = 0;
   return L_OK;
 }
 
 int LDynamicLinearList::DestoryList() {
-  for (int i = 0; i < m_data.lUsedNum; ++i) {
+  for (int i = 0; i < m_data.lUsedNum; ++i)
+  {
     L_Del(m_data.pData[i]);
   }
+  delete  [] m_data.pData;
+  m_data.lUsedNum = 0;
+  m_data.lCapacity = 0;
   return L_OK;
 }
 
-int LDynamicLinearList::InsertData(LObject* const data,
+int LDynamicLinearList::ListInsert(LObject* const data,
                                    const bool bToEnd /*= true*/) {
   if (!bToEnd)
   {
@@ -36,7 +44,7 @@ int LDynamicLinearList::InsertData(LObject* const data,
   return L_OK;
 }
 
-int LDynamicLinearList::InsertData(LObject * const data, const int position)
+int LDynamicLinearList::ListInsert(LObject * const data, const int position)
 {
     if(position<0 || position>m_data.lUsedNum)
     {
@@ -54,7 +62,7 @@ int LDynamicLinearList::InsertData(LObject * const data, const int position)
 
 }
 
-int LDynamicLinearList::DeleteData(const int position) {
+int LDynamicLinearList::ListDelete(const int position) {
 
     return L_OK;
 }
@@ -65,6 +73,7 @@ int LDynamicLinearList::ClearList()
     {
         L_Del(m_data.pData[i]);
     }
+    m_data.lUsedNum = 0;
     return L_OK;
 }
 
@@ -98,17 +107,55 @@ int LDynamicLinearList::GetElem(const int position, LObject *obj)
 
 int LDynamicLinearList::LocateElem(int &position, LObject *obj, CompareApi compareApi)
 {
-    return L_OK;
+    for(int i=0;i<m_data.lUsedNum;++i)
+    {
+        if(compareApi(m_data.pData[i],obj))
+        {
+            position = i;
+            return L_OK;
+        }
+    }
+    return L_ERR_FOUND;
 }
 
 int LDynamicLinearList::PriorElem(LObject *curObj, LObject *preObj)
 {
-    return L_OK;
+    for(int i=0;i<m_data.lUsedNum;++i)
+    {
+        if(m_data.pData[i] == curObj)
+        {
+            if(i==0)
+            {
+                return L_ERR_POSITION;
+            }
+            else
+            {
+                preObj = m_data.pData[i-1];
+                return L_OK;
+            }
+        }
+    }
+    return L_ERR_FOUND;
 }
 
 int LDynamicLinearList::NextElem(LObject *curObj, LObject *nextObj)
 {
-    return L_OK;
+    for(int i=0;i<m_data.lUsedNum;++i)
+    {
+        if(m_data.pData[i] == curObj)
+        {
+            if(i == m_data.lUsedNum-1)
+            {
+                return L_ERR_POSITION;
+            }
+            else
+            {
+                nextObj = m_data.pData[i+1];
+                return L_OK;
+            }
+        }
+    }
+    return L_ERR_FOUND;
 }
 
 int LDynamicLinearList::AdjustListSize()
