@@ -19,12 +19,10 @@ public:
     virtual int InitList();
     virtual int DestoryList();
     virtual int ClearList(){return L_ERR_SUPPORT;}
-    virtual int ListInsert( LObject* const data, const bool bToEnd = true)
-    {
-      return L_ERR_SUPPORT;
-    }
-    virtual int ListInsert( LObject* const data,const int position){return  L_ERR_SUPPORT;}
-    virtual int ListDelete(const int position) { return L_ERR_SUPPORT; }
+    virtual int ListInsert( LObject* const data, const bool bToEnd = true);
+
+    virtual int ListInsert( LObject* const data,const int position);
+    virtual int ListDelete(const int position);
     virtual int ListIsEmpty() { return L_ERR_SUPPORT; }
     virtual int ListLength() { return L_ERR_SUPPORT; }
     virtual int GetElem(const int position, LObject* obj)
