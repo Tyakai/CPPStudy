@@ -22,7 +22,7 @@ public:
   virtual int InitList() ;
   virtual int DestoryList();
   virtual int ClearList();
-  virtual int ListIsEmpty();
+  virtual L_BOOL ListIsEmpty();
   virtual int ListLength();
   virtual int ListInsert(LObject* const data, const bool bToEnd = true);
   virtual int ListInsert(LObject* const data,const int position);

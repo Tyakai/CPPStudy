@@ -77,7 +77,7 @@ int LDynamicLinearList::ClearList()
     return L_OK;
 }
 
-int LDynamicLinearList::ListIsEmpty()
+L_BOOL LDynamicLinearList::ListIsEmpty()
 {
     if(m_data.lUsedNum == 0)
     {

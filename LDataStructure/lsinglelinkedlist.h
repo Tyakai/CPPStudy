@@ -23,15 +23,12 @@ public:
 
     virtual int ListInsert( LObject* const data,const int position);
     virtual int ListDelete(const int position);
-    virtual int ListIsEmpty() { return L_ERR_SUPPORT; }
-    virtual int ListLength() { return L_ERR_SUPPORT; }
-    virtual int GetElem(const int position, LObject* obj)
-    {
-      return L_ERR_SUPPORT;
-    }
-    virtual int LocateElem(int& position, LObject* obj, CompareApi compareApi) {return L_ERR_SUPPORT;}
-    virtual int PriorElem(LObject* curObj, LObject* preObj){return L_ERR_SUPPORT;}
-    virtual int NextElem(LObject* curObj, LObject* nextObj){return L_ERR_SUPPORT;}
+    virtual L_BOOL ListIsEmpty();
+    virtual int ListLength();
+    virtual int GetElem(const int position, LObject* obj);
+    virtual int LocateElem(int& position, LObject* obj, CompareApi compareApi);
+    virtual int PriorElem(const LObject* pCurObj, LObject* &pPreObj);
+    virtual int NextElem(const LObject* pCurObj, LObject* &pNextObj);
 private:
     LSignleLinkedListItemData* m_data;
     long m_capacity;//总数

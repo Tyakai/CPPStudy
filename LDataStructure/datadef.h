@@ -11,7 +11,7 @@
 #define L_ERR_INIT     -6
 #define L_ERR_EMPTY    -7
 
-
+typedef unsigned int L_BOOL,*PL_BOOL;
 #define L_TRUE         1
 #define L_FALSE        0
 

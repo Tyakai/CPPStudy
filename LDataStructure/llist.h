@@ -23,15 +23,15 @@ public:
   }
   virtual int ListInsert( LObject* const data,const int position){return  L_ERR_SUPPORT;}
   virtual int ListDelete(const int position) { return L_ERR_SUPPORT; }
-  virtual int ListIsEmpty() { return L_ERR_SUPPORT; }
+  virtual L_BOOL ListIsEmpty() { return L_ERR_SUPPORT; }
   virtual int ListLength() { return L_ERR_SUPPORT; }
   virtual int GetElem(const int position, LObject* obj)
   {
     return L_ERR_SUPPORT;
   }
   virtual int LocateElem(int& position, LObject* obj, CompareApi compareApi) {return L_ERR_SUPPORT;}
-  virtual int PriorElem(LObject* curObj, LObject* preObj){return L_ERR_SUPPORT;}
-  virtual int NextElem(LObject* curObj, LObject* nextObj){return L_ERR_SUPPORT;}
+  virtual int PriorElem(const LObject* pCurObj, LObject* &pPreObj){return L_ERR_SUPPORT;}
+  virtual int NextElem(const LObject* pCurObj, LObject* &pNextObj){return L_ERR_SUPPORT;}
 
 };
 
